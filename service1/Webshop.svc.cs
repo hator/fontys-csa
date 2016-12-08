@@ -9,7 +9,7 @@ using WebshopContract;
 namespace service
 {
 
-
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Webshop : IWebshop
     {
         private List<Item> Products;
@@ -24,11 +24,7 @@ namespace service
         public bool BuyProduct(string ProductId)
         {
             Item product = Products.Find(p => p.ProductId == ProductId);
-            if(product == null)
-            {
-                return false;
-            }
-            if(product.Stock > 1)
+            if(product != null && product.Stock >= 1)
             {
                 product.Stock--;
                 return true;
@@ -42,7 +38,8 @@ namespace service
             if (product == null)
             {
                 return null;
-            } else
+            }
+            else
             {
                 return product.ProductInfo;
             }
