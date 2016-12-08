@@ -26,7 +26,7 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="fce0afce-470a-4ce7-923d-93d10bf13630" SourceId="1" SourceUrl="http://localhost:8733/Webshop/mex" />
     <MetadataFile FileName="WebshopContract.xsd" MetadataType="Schema" ID="53d2372c-bf4c-44ac-9cd5-05fd32e3fa7a" SourceId="1" SourceUrl="http://localhost:8733/Webshop/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="db88f6c3-3da1-4712-92c2-807e46a92f01" SourceId="1" SourceUrl="http://localhost:8733/Webshop/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="75516a87-51e7-4cfe-8ac8-1bde30804865" SourceId="1" SourceUrl="http://localhost:8733/Webshop/mex" />
+    <MetadataFile FileName="WebshopContract1.xsd" MetadataType="Schema" ID="6157d6e8-a9ce-4cd4-a12a-69bed971e263" SourceId="1" SourceUrl="http://localhost:8733/Webshop/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

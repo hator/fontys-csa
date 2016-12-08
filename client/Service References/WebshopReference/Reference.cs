@@ -9,7 +9,86 @@
 //------------------------------------------------------------------------------
 
 namespace client.WebshopReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Item", Namespace="http://schemas.datacontract.org/2004/07/WebshopContract")]
+    [System.SerializableAttribute()]
+    public partial class Item : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double PriceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StockField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Price {
+            get {
+                return this.PriceField;
+            }
+            set {
+                if ((this.PriceField.Equals(value) != true)) {
+                    this.PriceField = value;
+                    this.RaisePropertyChanged("Price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductId {
+            get {
+                return this.ProductIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductIdField, value) != true)) {
+                    this.ProductIdField = value;
+                    this.RaisePropertyChanged("ProductId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Stock {
+            get {
+                return this.StockField;
+            }
+            set {
+                if ((this.StockField.Equals(value) != true)) {
+                    this.StockField = value;
+                    this.RaisePropertyChanged("Stock");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="WebshopContract", ConfigurationName="WebshopReference.IWebshop")]
@@ -22,10 +101,10 @@ namespace client.WebshopReference {
         System.Threading.Tasks.Task<string> GetWebshopNameAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="WebshopContract/IWebshop/GetProductList", ReplyAction="WebshopContract/IWebshop/GetProductListResponse")]
-        string[] GetProductList();
+        client.WebshopReference.Item[] GetProductList();
         
         [System.ServiceModel.OperationContractAttribute(Action="WebshopContract/IWebshop/GetProductList", ReplyAction="WebshopContract/IWebshop/GetProductListResponse")]
-        System.Threading.Tasks.Task<string[]> GetProductListAsync();
+        System.Threading.Tasks.Task<client.WebshopReference.Item[]> GetProductListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="WebshopContract/IWebshop/GetProductInfo", ReplyAction="WebshopContract/IWebshop/GetProductInfoResponse")]
         string GetProductInfo(string ProductId);
@@ -75,11 +154,11 @@ namespace client.WebshopReference {
             return base.Channel.GetWebshopNameAsync();
         }
         
-        public string[] GetProductList() {
+        public client.WebshopReference.Item[] GetProductList() {
             return base.Channel.GetProductList();
         }
         
-        public System.Threading.Tasks.Task<string[]> GetProductListAsync() {
+        public System.Threading.Tasks.Task<client.WebshopReference.Item[]> GetProductListAsync() {
             return base.Channel.GetProductListAsync();
         }
         

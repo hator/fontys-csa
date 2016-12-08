@@ -82,8 +82,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\WebshopReference\Arrays.xsd">
-      <SubType>Designer</SubType>
+    <None Include="Service References\WebshopReference\client.WebshopReference.Item.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WebshopReference\service.wsdl" />
     <None Include="Service References\WebshopReference\service.xsd">
@@ -91,6 +91,9 @@
     </None>
     <None Include="Service References\WebshopReference\WebshopContract.wsdl" />
     <None Include="Service References\WebshopReference\WebshopContract.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebshopReference\WebshopContract1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
