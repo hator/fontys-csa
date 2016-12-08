@@ -8,9 +8,12 @@ using System.Text;
 namespace WebshopContract
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract(Namespace="WebshopContract")]
+    [ServiceContract(Namespace="WebshopContract", CallbackContract = typeof(IWebshopCallback))]
     public interface IWebshop
     {
+        [OperationContract(IsOneWay = true)]
+        void Connect();
+
         [OperationContract]
         string GetWebshopName();
 
@@ -22,6 +25,15 @@ namespace WebshopContract
 
         [OperationContract]
         bool BuyProduct(string ProductId);
+    }
+
+    public interface IWebshopCallback
+    {
+        [OperationContract]
+        void NewClientConnected(int NumberOfConnectedClients);
+
+        [OperationContract(IsOneWay = true)]
+        void ProductSold(Item Product);
     }
 
     [DataContract]

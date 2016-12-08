@@ -9,10 +9,14 @@ using WebshopContract;
 namespace service
 {
 
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior( InstanceContextMode = InstanceContextMode.Single
+                    , ConcurrencyMode = ConcurrencyMode.Reentrant
+                    )
+    ]
     public class Webshop : IWebshop
     {
         private List<Item> Products;
+        private List<IWebshopCallback> ClientCallbacks = new List<IWebshopCallback>();
 
         public Webshop()
         {
@@ -21,16 +25,38 @@ namespace service
             Products.Add(new Item("Bike", "Bike with two wheels", 100, 10, false));
         }
 
+        public void Connect()
+        {
+            IWebshopCallback clientCallback = OperationContext.Current.GetCallbackChannel<IWebshopCallback>();
+            ClientCallbacks.Add(clientCallback);
+            int currentClientCount = ClientCallbacks.Count();
+            foreach(IWebshopCallback cc in ClientCallbacks)
+            {
+                cc.NewClientConnected(currentClientCount);
+            }
+            
+        }
+
         public bool BuyProduct(string ProductId)
         {
+            IWebshopCallback currentClient = OperationContext.Current.GetCallbackChannel<IWebshopCallback>();
             Item product = Products.Find(p => p.ProductId == ProductId);
             if(product != null && product.Stock >= 1)
             {
                 product.Stock--;
+                foreach(IWebshopCallback cc in ClientCallbacks)
+                {
+                    // Notify all _other_ clients
+                    if (cc != currentClient)
+                    {
+                        cc.ProductSold(product);
+                    }
+                }
                 return true;
             }
             return false;
         }
+
 
         public string GetProductInfo(string ProductId)
         {

@@ -91,8 +91,14 @@ namespace client.WebshopReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="WebshopContract", ConfigurationName="WebshopReference.IWebshop")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="WebshopContract", ConfigurationName="WebshopReference.IWebshop", CallbackContract=typeof(client.WebshopReference.IWebshopCallback))]
     public interface IWebshop {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="WebshopContract/IWebshop/Connect")]
+        void Connect();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="WebshopContract/IWebshop/Connect")]
+        System.Threading.Tasks.Task ConnectAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="WebshopContract/IWebshop/GetWebshopName", ReplyAction="WebshopContract/IWebshop/GetWebshopNameResponse")]
         string GetWebshopName();
@@ -120,30 +126,49 @@ namespace client.WebshopReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IWebshopCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebshopContract/IWebshop/NewClientConnected", ReplyAction="WebshopContract/IWebshop/NewClientConnectedResponse")]
+        void NewClientConnected(int NumberOfConnectedClients);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="WebshopContract/IWebshop/ProductSold")]
+        void ProductSold(client.WebshopReference.Item Product);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IWebshopChannel : client.WebshopReference.IWebshop, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class WebshopClient : System.ServiceModel.ClientBase<client.WebshopReference.IWebshop>, client.WebshopReference.IWebshop {
+    public partial class WebshopClient : System.ServiceModel.DuplexClientBase<client.WebshopReference.IWebshop>, client.WebshopReference.IWebshop {
         
-        public WebshopClient() {
+        public WebshopClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public WebshopClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public WebshopClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public WebshopClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public WebshopClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public WebshopClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public WebshopClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public WebshopClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public WebshopClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void Connect() {
+            base.Channel.Connect();
+        }
+        
+        public System.Threading.Tasks.Task ConnectAsync() {
+            return base.Channel.ConnectAsync();
         }
         
         public string GetWebshopName() {
