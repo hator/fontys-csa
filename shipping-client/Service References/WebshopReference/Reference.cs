@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace client.WebshopReference {
+namespace shipping_client.WebshopReference {
     using System.Runtime.Serialization;
     using System;
     
@@ -168,7 +168,7 @@ namespace client.WebshopReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="WebshopContract", ConfigurationName="WebshopReference.IWebshop", CallbackContract=typeof(client.WebshopReference.IWebshopCallback))]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="WebshopContract", ConfigurationName="WebshopReference.IWebshop", CallbackContract=typeof(shipping_client.WebshopReference.IWebshopCallback))]
     public interface IWebshop {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="WebshopContract/IWebshop/Connect")]
@@ -184,10 +184,10 @@ namespace client.WebshopReference {
         System.Threading.Tasks.Task<string> GetWebshopNameAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="WebshopContract/IWebshop/GetProductList", ReplyAction="WebshopContract/IWebshop/GetProductListResponse")]
-        client.WebshopReference.Item[] GetProductList();
+        shipping_client.WebshopReference.Item[] GetProductList();
         
         [System.ServiceModel.OperationContractAttribute(Action="WebshopContract/IWebshop/GetProductList", ReplyAction="WebshopContract/IWebshop/GetProductListResponse")]
-        System.Threading.Tasks.Task<client.WebshopReference.Item[]> GetProductListAsync();
+        System.Threading.Tasks.Task<shipping_client.WebshopReference.Item[]> GetProductListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="WebshopContract/IWebshop/GetProductInfo", ReplyAction="WebshopContract/IWebshop/GetProductInfoResponse")]
         string GetProductInfo(string ProductId);
@@ -209,19 +209,16 @@ namespace client.WebshopReference {
         void NewClientConnected(int NumberOfConnectedClients);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="WebshopContract/IWebshop/ProductSold")]
-        void ProductSold(client.WebshopReference.Item Product);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="WebshopContract/IWebshop/OrderShipped", ReplyAction="WebshopContract/IWebshop/OrderShippedResponse")]
-        void OrderShipped(client.WebshopReference.Order Order);
+        void ProductSold(shipping_client.WebshopReference.Item Product);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IWebshopChannel : client.WebshopReference.IWebshop, System.ServiceModel.IClientChannel {
+    public interface IWebshopChannel : shipping_client.WebshopReference.IWebshop, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class WebshopClient : System.ServiceModel.DuplexClientBase<client.WebshopReference.IWebshop>, client.WebshopReference.IWebshop {
+    public partial class WebshopClient : System.ServiceModel.DuplexClientBase<shipping_client.WebshopReference.IWebshop>, shipping_client.WebshopReference.IWebshop {
         
         public WebshopClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
@@ -259,11 +256,11 @@ namespace client.WebshopReference {
             return base.Channel.GetWebshopNameAsync();
         }
         
-        public client.WebshopReference.Item[] GetProductList() {
+        public shipping_client.WebshopReference.Item[] GetProductList() {
             return base.Channel.GetProductList();
         }
         
-        public System.Threading.Tasks.Task<client.WebshopReference.Item[]> GetProductListAsync() {
+        public System.Threading.Tasks.Task<shipping_client.WebshopReference.Item[]> GetProductListAsync() {
             return base.Channel.GetProductListAsync();
         }
         
@@ -285,7 +282,7 @@ namespace client.WebshopReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="server", ConfigurationName="WebshopReference.IShipping", CallbackContract=typeof(client.WebshopReference.IShippingCallback))]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="server", ConfigurationName="WebshopReference.IShipping", CallbackContract=typeof(shipping_client.WebshopReference.IShippingCallback))]
     public interface IShipping {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="server/IShipping/ConnectShipping")]
@@ -295,10 +292,10 @@ namespace client.WebshopReference {
         System.Threading.Tasks.Task ConnectShippingAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="server/IShipping/GetOrderList", ReplyAction="server/IShipping/GetOrderListResponse")]
-        client.WebshopReference.Order[] GetOrderList();
+        shipping_client.WebshopReference.Order[] GetOrderList();
         
         [System.ServiceModel.OperationContractAttribute(Action="server/IShipping/GetOrderList", ReplyAction="server/IShipping/GetOrderListResponse")]
-        System.Threading.Tasks.Task<client.WebshopReference.Order[]> GetOrderListAsync();
+        System.Threading.Tasks.Task<shipping_client.WebshopReference.Order[]> GetOrderListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="server/IShipping/ShipOrder", ReplyAction="server/IShipping/ShipOrderResponse")]
         bool ShipOrder(int OrderId);
@@ -311,16 +308,16 @@ namespace client.WebshopReference {
     public interface IShippingCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="server/IShipping/NewOrder")]
-        void NewOrder(client.WebshopReference.Order Order);
+        void NewOrder(shipping_client.WebshopReference.Order Order);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IShippingChannel : client.WebshopReference.IShipping, System.ServiceModel.IClientChannel {
+    public interface IShippingChannel : shipping_client.WebshopReference.IShipping, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ShippingClient : System.ServiceModel.DuplexClientBase<client.WebshopReference.IShipping>, client.WebshopReference.IShipping {
+    public partial class ShippingClient : System.ServiceModel.DuplexClientBase<shipping_client.WebshopReference.IShipping>, shipping_client.WebshopReference.IShipping {
         
         public ShippingClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
@@ -350,11 +347,11 @@ namespace client.WebshopReference {
             return base.Channel.ConnectShippingAsync();
         }
         
-        public client.WebshopReference.Order[] GetOrderList() {
+        public shipping_client.WebshopReference.Order[] GetOrderList() {
             return base.Channel.GetOrderList();
         }
         
-        public System.Threading.Tasks.Task<client.WebshopReference.Order[]> GetOrderListAsync() {
+        public System.Threading.Tasks.Task<shipping_client.WebshopReference.Order[]> GetOrderListAsync() {
             return base.Channel.GetOrderListAsync();
         }
         

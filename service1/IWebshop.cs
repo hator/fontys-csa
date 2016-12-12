@@ -4,10 +4,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using service;
 
 namespace WebshopContract
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract(Namespace="WebshopContract", CallbackContract = typeof(IWebshopCallback))]
     public interface IWebshop
     {
@@ -34,6 +34,9 @@ namespace WebshopContract
 
         [OperationContract(IsOneWay = true)]
         void ProductSold(Item Product);
+
+        [OperationContract]
+        void OrderShipped(Order Order);
     }
 
     [DataContract]

@@ -77,16 +77,4 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="OrderShipped">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WebshopContract" minOccurs="0" name="Order" nillable="true" type="q3:Order" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="OrderShippedResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
 </xs:schema>

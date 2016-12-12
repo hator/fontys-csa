@@ -13,10 +13,12 @@ namespace service
                     , ConcurrencyMode = ConcurrencyMode.Reentrant
                     )
     ]
-    public class Webshop : IWebshop
+    public class Webshop : IWebshop, IShipping
     {
         private List<Item> Products;
         private List<IWebshopCallback> ClientCallbacks = new List<IWebshopCallback>();
+        private List<IShippingCallback> ShippingCallbacks = new List<IShippingCallback>();
+        private List<Order> Orders = new List<Order>();
 
         public Webshop()
         {
@@ -44,6 +46,14 @@ namespace service
             if(product != null && product.Stock >= 1)
             {
                 product.Stock--;
+                Order order = new Order(product.ProductId, currentClient);
+                Orders.Add(order);
+
+                foreach(IShippingCallback sc in ShippingCallbacks)
+                {
+                    sc.NewOrder(order);
+                }
+
                 foreach(IWebshopCallback cc in ClientCallbacks)
                 {
                     // Notify all _other_ clients
@@ -79,6 +89,30 @@ namespace service
         public string GetWebshopName()
         {
             return "A webshop";
+        }
+
+        public List<Order> GetOrderList()
+        {
+            return Orders;
+        }
+
+        public bool ShipOrder(int OrderId)
+        {
+            Order order = Orders.Find(o => o.OrderId == OrderId);
+
+            if (order != null)
+            {
+                Orders.Remove(order);
+                order.WebshopCallback.OrderShipped(order);
+                return true;
+            }
+            return false;
+        }
+
+        public void ConnectShipping()
+        {
+            IShippingCallback shippingCallback = OperationContext.Current.GetCallbackChannel<IShippingCallback>();
+            ShippingCallbacks.Add(shippingCallback);
         }
     }
 }

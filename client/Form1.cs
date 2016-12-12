@@ -108,10 +108,6 @@ namespace client
                     myItem.Stock--;
                     productsDataGrid.Invalidate();
                 }
-                else
-                {
-                    RefreshProductList();
-                }
             }
         }
 
@@ -121,6 +117,15 @@ namespace client
             productsDataGrid.DataSource = items;
 
             ReorderColumns();
+        }
+
+        public void OrderShipped(Order Order)
+        {
+            MessageBox.Show( "Your order for " + Order.ProductId + " shipped"
+                           , "Order shipped"
+                           , MessageBoxButtons.OK
+                           , MessageBoxIcon.Information
+                           );
         }
     }
 }

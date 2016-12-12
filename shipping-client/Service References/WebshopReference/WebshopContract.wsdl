@@ -43,12 +43,6 @@
   <wsdl:message name="IWebshop_ProductSold_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ProductSold" />
   </wsdl:message>
-  <wsdl:message name="IWebshop_OrderShipped_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:OrderShipped" />
-  </wsdl:message>
-  <wsdl:message name="IWebshop_OrderShipped_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:OrderShippedResponse" />
-  </wsdl:message>
   <wsdl:portType name="IWebshop">
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="WebshopContract/IWebshop/Connect" message="tns:IWebshop_Connect_InputMessage" />
@@ -75,10 +69,6 @@
     </wsdl:operation>
     <wsdl:operation name="ProductSold">
       <wsdl:output wsaw:Action="WebshopContract/IWebshop/ProductSold" message="tns:IWebshop_ProductSold_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="OrderShipped">
-      <wsdl:output wsaw:Action="WebshopContract/IWebshop/OrderShipped" message="tns:IWebshop_OrderShipped_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="WebshopContract/IWebshop/OrderShippedResponse" message="tns:IWebshop_OrderShipped_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>
